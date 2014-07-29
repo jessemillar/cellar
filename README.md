@@ -1,0 +1,1 @@
+My game engine needed a quick way of storing data for high scores and such so I threw this together.
