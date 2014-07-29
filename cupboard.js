@@ -12,6 +12,13 @@ var Cupboard = function()
 		return this
 	}
 
+		this.tempSet = function(key, value)
+		{
+			sessionStorage.setItem(key, value)
+
+			return this
+		}
+
 	this.get = function(key)
 	{
 		if (localStorage.getItem(key))
@@ -24,10 +31,29 @@ var Cupboard = function()
 		}
 	}
 
+		this.tempGet = function(key)
+		{
+			if (sessionStorage.getItem(key))
+			{
+				return sessionStorage.getItem(key)
+			}
+			else
+			{
+				return undefined
+			}
+		}
+
 	this.delete = function(key)
 	{
 		localStorage.removeItem(key)
 
 		return this
 	}
+
+		this.tempDelete = function(key)
+		{
+			sessionStorage.removeItem(key)
+
+			return this
+		}
 }
