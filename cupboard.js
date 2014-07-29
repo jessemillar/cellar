@@ -5,55 +5,85 @@ var Cupboard = function()
 		console.log('This browser does not support localStorage')
 	}
 
-	this.set = function(key, value)
+	this.set = function(key, value, temp)
 	{
-		localStorage.setItem(key, value)
+		var tempValue
 
-		return this
-	}
-
-		this.tempSet = function(key, value)
+		if (typeof value == 'object')
 		{
-			sessionStorage.setItem(key, value)
-
-			return this
-		}
-
-	this.get = function(key)
-	{
-		if (localStorage.getItem(key))
-		{
-			return localStorage.getItem(key)
+			tempValue = JSON.stringify(value)
 		}
 		else
 		{
-			return undefined
+			tempValue = value
 		}
+
+		if (temp)
+		{
+			sessionStorage.setItem(key, tempValue)
+		}
+		else
+		{
+			localStorage.setItem(key, tempValue)
+		}
+
+		return true
 	}
 
-		this.tempGet = function(key)
+	this.get = function(key, temp)
+	{
+		if (temp)
 		{
 			if (sessionStorage.getItem(key))
 			{
-				return sessionStorage.getItem(key)
+				return JSON.parse(sessionStorage.getItem(key))
 			}
 			else
 			{
 				return undefined
 			}
 		}
-
-	this.delete = function(key)
-	{
-		localStorage.removeItem(key)
-
-		return this
+		else
+		{
+			if (localStorage.getItem(key))
+			{
+				return JSON.parse(localStorage.getItem(key))
+			}
+			else
+			{
+				return undefined
+			}
+		}
+		
 	}
 
-		this.tempDelete = function(key)
+	this.delete = function(key, temp)
+	{
+		if (temp)
 		{
-			sessionStorage.removeItem(key)
+			if (sessionStorage.getItem(key))
+			{
+				sessionStorage.removeItem(key)
 
-			return this
+				return true
+			}
+			else
+			{
+				return false
+			}
 		}
+		else
+		{
+			if (localStorage.getItem(key))
+			{
+				localStorage.removeItem(key)
+
+				return true
+			}
+			else
+			{
+				return false
+			}
+		}
+	}
 }
