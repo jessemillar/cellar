@@ -1,4 +1,4 @@
-var Vault = function() {
+var Cellar = function() { // For more permanent storage
     if (typeof(Storage) == 'undefined') {
         console.warn('This browser does not support localStorage');
     }

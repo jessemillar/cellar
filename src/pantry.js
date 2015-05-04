@@ -1,4 +1,4 @@
-var Cupboard = function() {
+var Pantry = function() { // For temporary, session storage
     if (typeof(Storage) == 'undefined') {
         console.warn('This browser does not support localStorage');
     }
