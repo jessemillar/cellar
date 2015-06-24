@@ -3,11 +3,11 @@ My game engine needed a way of storing data for high scores and such so I threw 
 ## Classes
 
 ```
-Pantry() // For temporary session data  
+Cellar() // For across-session persistent data
 ```
 
 ```
-Cellar() // For across-session persistent data
+Pantry() // For temporary session data  
 ```
 
 ## Functions
